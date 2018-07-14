@@ -1,0 +1,8 @@
+#! /bin/bash
+
+set -e
+
+cp $SNAP/default.conf $SNAP_DATA/config
+# The config file should not be world readable, but the snap user can't read it
+# either if it is chmodded. How to solve this?
+#chmod 600 $SNAP_DATA/config

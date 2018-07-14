@@ -1,0 +1,26 @@
+name: mythicbeastsddns
+version: 'git'
+summary: Automatically update dynamic dns for your Mythic Beasts hosts
+description: |
+  Mythic Beasts customers can use this snap to automatically update dynamic dns
+  entries for ipv4 and ipv6 hosts. Configure the domain, password,
+  ipv4hostname and ipv6hostname using the `snap set` command as detailed at 
+  https://docs.snapcraft.io/reference/snap-command#set . Activate the updater by
+  setting the updateipv4 and/or updateipv6 keys to "yes".
+  .
+  BEWARE - passwords are stored in world-readable plain text. Until I can find a
+  way around this problem do not use this snap in production.
+grade: stable
+confinement: strict
+architectures: [ all ]
+
+apps:
+  mythicbeastsddns:
+    command: ddns_service.sh
+    daemon: simple
+    plugs: [ network ]
+
+parts:
+  scripts:
+    plugin: dump
+    source: scripts
